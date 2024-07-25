@@ -285,25 +285,35 @@
                 'SOCIAL': '#D1C4E9'
             };
 
-            Object.keys(scheduleData).forEach(className => {
-                printWindow.document.write('<tr>');
-                printWindow.document.write(`<td>${className}</td>`);
-                const classData = scheduleData[className];
-                const periods = [
-                    'FirstPeriod', 'SecondPeriod', 'ThirdPeriod', 'FourthPeriod',
-                    'FifthPeriod', 'SixthPeriod', 'SeventhPeriod', 'EighthPeriod','NinthPeriod',
-                    'FirstStudyHour', 'SecondStudyHour', 'ThirdStudyHour'
-                ];
-                periods.forEach(period => {
-                    const color = subjectColors[classData[period]] || 'white';
-                    printWindow.document.write(`<td style="background-color: ${color} !important;">${classData[period]}</td>`);
-                });
-                printWindow.document.write('</tr>');
-            });
+            Object.keys(scheduleData).map(className => {
+        const classData = scheduleData[className];
+        const periods = [
+            'FirstPeriod', 'SecondPeriod', 'ThirdPeriod', 'FourthPeriod',
+            'FifthPeriod', 'SixthPeriod', 'SeventhPeriod', 'EighthPeriod',
+            'FirstStudyHour', 'SecondStudyHour', 'ThirdStudyHour'
+        ];
 
-            printWindow.document.write('</tbody></table>');
-            printWindow.document.close();
-            printWindow.print();
+        return `
+            <tr>
+                <td>${className}</td>
+                <td class="break">BREAK</td>
+                <td style="background-color: ${subjectColors[classData.FirstPeriod] || 'white'}">${classData.FirstPeriod}</td>
+                <td style="background-color: ${subjectColors[classData.SecondPeriod] || 'white'}">${classData.SecondPeriod}</td>
+                <td class="break">BREAK</td>
+                <td style="background-color: ${subjectColors[classData.ThirdPeriod] || 'white'}">${classData.ThirdPeriod}</td>
+                <td style="background-color: ${subjectColors[classData.FourthPeriod] || 'white'}">${classData.FourthPeriod}</td>
+                <td style="background-color: ${subjectColors[classData.FifthPeriod] || 'white'}">${classData.FifthPeriod}</td>
+                <td style="background-color: ${subjectColors[classData.SixthPeriod] || 'white'}">${classData.SixthPeriod}</td>
+                <td class="break">BREAK</td>
+                <td style="background-color: ${subjectColors[classData.SeventhPeriod] || 'white'}">${classData.SeventhPeriod}</td>
+                <td style="background-color: ${subjectColors[classData.EighthPeriod] || 'white'}">${classData.EighthPeriod}</td>
+                <td class="break">BREAK</td>
+                <td style="background-color: ${subjectColors[classData.FirstStudyHour] || 'white'}">${classData.FirstStudyHour}</td>
+                <td style="background-color: ${subjectColors[classData.SecondStudyHour] || 'white'}">${classData.SecondStudyHour}</td>
+                <td style="background-color: ${subjectColors[classData.ThirdStudyHour] || 'white'}">${classData.ThirdStudyHour}</td>
+            </tr>
+        `;
+    }).join('');
         }
 
 
