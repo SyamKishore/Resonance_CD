@@ -292,11 +292,11 @@ openTab('ClassV');
 </body>
 </html>
  -->
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>Class Schedule</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -312,17 +312,19 @@ openTab('ClassV');
         .tab-buttons {
             overflow: hidden;
             background-color: #f1f1f1;
+            display: flex;
+            flex-wrap: wrap;
         }
         .tab-buttons button {
             background-color: #4CAF50;
             color: white;
-            float: left;
             border: none;
             outline: none;
             cursor: pointer;
             padding: 10px 20px;
             margin: 5px;
             transition: 0.3s;
+            flex: 1 1 100px;
         }
         .tab-buttons button:hover {
             background-color: #45a049;
@@ -343,31 +345,6 @@ openTab('ClassV');
             writing-mode: vertical-lr;
             width: 5%;
         }
-        select {
-            margin: 5px 0;
-            padding: 5px;
-            width: 95%;
-        }
-        button[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        button[type="submit"]:hover {
-            background-color: #45a049;
-        }
-        @media print {
-            @page {
-                size: A4 landscape;
-                margin: 20mm;
-            }
-            .no-print {
-                display: none;
-            }
-        }
         @media (max-width: 768px) {
             .tab-buttons button {
                 float: none;
@@ -376,16 +353,13 @@ openTab('ClassV');
             .tab-content {
                 padding: 5px;
             }
-            select {
-                width: 100%;
-            }
             table {
-                width: 100%;
                 display: block;
                 overflow-x: auto;
             }
             th, td {
                 padding: 4px;
+                font-size: 14px;
             }
         }
     </style>
@@ -407,7 +381,7 @@ openTab('ClassV');
     <form class="tab-content" onsubmit="saveSchedule(event, 'ClassV')">
         <h2>Class V</h2>
         <div id="ClassVFields"></div>
-        <button type="submit">Save Schedule</button>
+        <button type="submit" class="btn btn-primary">Save Schedule</button>
     </form>
 </div>
 
@@ -415,7 +389,7 @@ openTab('ClassV');
     <form class="tab-content" onsubmit="saveSchedule(event, 'ClassVI')">
         <h2>Class VI</h2>
         <div id="ClassVIFields"></div>
-        <button type="submit">Save Schedule</button>
+        <button type="submit" class="btn btn-primary">Save Schedule</button>
     </form>
 </div>
 
@@ -423,7 +397,7 @@ openTab('ClassV');
     <form class="tab-content" onsubmit="saveSchedule(event, 'ClassVII')">
         <h2>Class VII</h2>
         <div id="ClassVIIFields"></div>
-        <button type="submit">Save Schedule</button>
+        <button type="submit" class="btn btn-primary">Save Schedule</button>
     </form>
 </div>
 
@@ -431,7 +405,7 @@ openTab('ClassV');
     <form class="tab-content" onsubmit="saveSchedule(event, 'ClassVIII')">
         <h2>Class VIII</h2>
         <div id="ClassVIIIFields"></div>
-        <button type="submit">Save Schedule</button>
+        <button type="submit" class="btn btn-primary">Save Schedule</button>
     </form>
 </div>
 
@@ -439,7 +413,7 @@ openTab('ClassV');
     <form class="tab-content" onsubmit="saveSchedule(event, 'ClassIX')">
         <h2>Class IX</h2>
         <div id="ClassIXFields"></div>
-        <button type="submit">Save Schedule</button>
+        <button type="submit" class="btn btn-primary">Save Schedule</button>
     </form>
 </div>
 
@@ -447,20 +421,23 @@ openTab('ClassV');
     <form class="tab-content" onsubmit="saveSchedule(event, 'ClassX')">
         <h2>Class X</h2>
         <div id="ClassXFields"></div>
-        <button type="submit">Save Schedule</button>
+        <button type="submit" class="btn btn-primary">Save Schedule</button>
     </form>
 </div>
 
 <div id="DatePicker" class="tab">
     <div class="tab-content">
         <h2>Date Picker</h2>
-        <label>Date: <input type="date" id="scheduleDate" onchange="updateDay()"></label><br>
-        <label>Day: <input type="text" id="scheduleDay" readonly></label><br>
-        <button onclick="saveDate()">Save Date</button>
+        <label>Date: <input type="date" id="scheduleDate" class="form-control" onchange="updateDay()"></label><br>
+        <label>Day: <input type="text" id="scheduleDay" class="form-control" readonly></label><br>
+        <button onclick="saveDate()" class="btn btn-primary">Save Date</button>
     </div>
 </div>
 
-<button onclick="downloadScheduleAsImage()" class="no-print">Download Table as JPG</button>
+<div class="text-center mt-3 no-print">
+    <button onclick="downloadScheduleAsImage()" class="btn btn-success">Download Table as JPG</button>
+    <button onclick="window.print()" class="btn btn-info">Print Schedule</button>
+</div>
 
 <script>
 const subjects = [
@@ -491,7 +468,7 @@ function generatePeriodFields() {
     
     return periods.map(period => `
         <label>${period}: 
-            <select name="${period.replace(/ /g, '')}">
+            <select name="${period.replace(/ /g, '')}" class="form-control mb-2">
                 ${subjects.map(subject => `<option value="${subject}">${subject}</option>`).join('')}
             </select>
         </label><br>
@@ -545,7 +522,7 @@ function downloadScheduleAsImage() {
             <span>Date: ${scheduleDate}</span>
             <span>Day: ${scheduleDay}</span>
         </div>
-        <table>
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>Class</th>
