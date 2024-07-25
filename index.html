@@ -293,7 +293,7 @@ openTab('ClassV');
 </html>
  -->
 
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Class Schedule</title>
@@ -366,6 +366,26 @@ openTab('ClassV');
             }
             .no-print {
                 display: none;
+            }
+        }
+        @media (max-width: 768px) {
+            .tab-buttons button {
+                float: none;
+                width: 100%;
+            }
+            .tab-content {
+                padding: 5px;
+            }
+            select {
+                width: 100%;
+            }
+            table {
+                width: 100%;
+                display: block;
+                overflow-x: auto;
+            }
+            th, td {
+                padding: 4px;
             }
         }
     </style>
@@ -589,18 +609,18 @@ function generateScheduleRows() {
         return `
             <tr>
                 <td>${className}</td>
-                <td class="break"></td>
+                <td class="break">BREAK</td>
                 <td style="background-color: ${subjectColors[classData.FirstPeriod] || 'white'}">${classData.FirstPeriod}</td>
                 <td style="background-color: ${subjectColors[classData.SecondPeriod] || 'white'}">${classData.SecondPeriod}</td>
-                <td class="break"></td>
+                <td class="break">BREAK</td>
                 <td style="background-color: ${subjectColors[classData.ThirdPeriod] || 'white'}">${classData.ThirdPeriod}</td>
                 <td style="background-color: ${subjectColors[classData.FourthPeriod] || 'white'}">${classData.FourthPeriod}</td>
                 <td style="background-color: ${subjectColors[classData.FifthPeriod] || 'white'}">${classData.FifthPeriod}</td>
                 <td style="background-color: ${subjectColors[classData.SixthPeriod] || 'white'}">${classData.SixthPeriod}</td>
-                <td class="break"></td>
+                <td class="break">BREAK</td>
                 <td style="background-color: ${subjectColors[classData.SeventhPeriod] || 'white'}">${classData.SeventhPeriod}</td>
                 <td style="background-color: ${subjectColors[classData.EighthPeriod] || 'white'}">${classData.EighthPeriod}</td>
-                <td class="break"></td>
+                <td class="break">BREAK</td>
                 <td style="background-color: ${subjectColors[classData.FirstStudyHour] || 'white'}">${classData.FirstStudyHour}</td>
                 <td style="background-color: ${subjectColors[classData.SecondStudyHour] || 'white'}">${classData.SecondStudyHour}</td>
                 <td style="background-color: ${subjectColors[classData.ThirdStudyHour] || 'white'}">${classData.ThirdStudyHour}</td>
