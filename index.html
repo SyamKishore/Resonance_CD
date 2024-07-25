@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Class Schedule</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -9,31 +8,21 @@
             font-family: Arial, sans-serif;
         }
 
-        .tab {
-            display: none;
-        }
-
-        .tab-content {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-top: none;
-        }
-
         .tab-buttons {
+            display: flex;
             overflow: hidden;
             background-color: #f1f1f1;
+            margin-bottom: 10px;
         }
 
         .tab-buttons button {
             background-color: #4CAF50;
             color: white;
-            float: left;
             border: none;
-            outline: none;
             cursor: pointer;
             padding: 10px 20px;
-            margin: 5px;
-            transition: 0.3s;
+            margin: 0 5px;
+            transition: background-color 0.3s;
         }
 
         .tab-buttons button:hover {
@@ -44,13 +33,19 @@
             background-color: #2e7d32;
         }
 
+        .tab-content {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: none;
+            background-color: #fff;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
         }
 
-        th,
-        td {
+        th, td {
             border: 1px solid black;
             text-align: center;
             padding: 8px;
@@ -59,7 +54,7 @@
         select {
             margin: 5px 0;
             padding: 5px;
-            width: 95%;
+            width: 100%;
         }
 
         button[type="submit"] {
@@ -87,92 +82,81 @@
         }
     </style>
 </head>
-
 <body>
 
-    <div class="tab-buttons">
-        <button class="tab-button" onclick="openTab('ClassV')">Class V</button>
-        <button class="tab-button" onclick="openTab('ClassVI')">Class VI</button>
-        <button class="tab-button" onclick="openTab('ClassVII')">Class VII</button>
-        <button class="tab-button" onclick="openTab('ClassVIII')">Class VIII</button>
-        <button class="tab-button" onclick="openTab('ClassIX')">Class IX</button>
-        <button class="tab-button" onclick="openTab('ClassX')">Class X</button>
-        <button class="tab-button" onclick="openTab('DatePicker')">Date Picker</button>
-    </div>
+    <div class="container">
+        <div class="tab-buttons">
+            <button class="tab-button" onclick="openTab('ClassV')">Class V</button>
+            <button class="tab-button" onclick="openTab('ClassVI')">Class VI</button>
+            <button class="tab-button" onclick="openTab('ClassVII')">Class VII</button>
+            <button class="tab-button" onclick="openTab('ClassVIII')">Class VIII</button>
+            <button class="tab-button" onclick="openTab('ClassIX')">Class IX</button>
+            <button class="tab-button" onclick="openTab('ClassX')">Class X</button>
+            <button class="tab-button" onclick="openTab('DatePicker')">Date Picker</button>
+        </div>
 
-    <div id="ClassV" class="tab">
-        <form class="tab-content" onsubmit="saveSchedule(event, 'ClassV')">
-            <h2>Class V</h2>
-            <div id="ClassVFields"></div>
-            <button type="submit">Save Schedule</button>
-        </form>
-    </div>
+        <div id="ClassV" class="tab-content">
+            <form onsubmit="saveSchedule(event, 'ClassV')">
+                <h2>Class V</h2>
+                <div id="ClassVFields"></div>
+                <button type="submit">Save Schedule</button>
+            </form>
+        </div>
 
-    <div id="ClassVI" class="tab">
-        <form class="tab-content" onsubmit="saveSchedule(event, 'ClassVI')">
-            <h2>Class VI</h2>
-            <div id="ClassVIFields"></div>
-            <button type="submit">Save Schedule</button>
-        </form>
-    </div>
+        <div id="ClassVI" class="tab-content" style="display: none;">
+            <form onsubmit="saveSchedule(event, 'ClassVI')">
+                <h2>Class VI</h2>
+                <div id="ClassVIFields"></div>
+                <button type="submit">Save Schedule</button>
+            </form>
+        </div>
 
-    <div id="ClassVII" class="tab">
-        <form class="tab-content" onsubmit="saveSchedule(event, 'ClassVII')">
-            <h2>Class VII</h2>
-            <div id="ClassVIIFields"></div>
-            <button type="submit">Save Schedule</button>
-        </form>
-    </div>
+        <div id="ClassVII" class="tab-content" style="display: none;">
+            <form onsubmit="saveSchedule(event, 'ClassVII')">
+                <h2>Class VII</h2>
+                <div id="ClassVIIFields"></div>
+                <button type="submit">Save Schedule</button>
+            </form>
+        </div>
 
-    <div id="ClassVIII" class="tab">
-        <form class="tab-content" onsubmit="saveSchedule(event, 'ClassVIII')">
-            <h2>Class VIII</h2>
-            <div id="ClassVIIIFields"></div>
-            <button type="submit">Save Schedule</button>
-        </form>
-    </div>
+        <div id="ClassVIII" class="tab-content" style="display: none;">
+            <form onsubmit="saveSchedule(event, 'ClassVIII')">
+                <h2>Class VIII</h2>
+                <div id="ClassVIIIFields"></div>
+                <button type="submit">Save Schedule</button>
+            </form>
+        </div>
 
-    <div id="ClassIX" class="tab">
-        <form class="tab-content" onsubmit="saveSchedule(event, 'ClassIX')">
-            <h2>Class IX</h2>
-            <div id="ClassIXFields"></div>
-            <button type="submit">Save Schedule</button>
-        </form>
-    </div>
+        <div id="ClassIX" class="tab-content" style="display: none;">
+            <form onsubmit="saveSchedule(event, 'ClassIX')">
+                <h2>Class IX</h2>
+                <div id="ClassIXFields"></div>
+                <button type="submit">Save Schedule</button>
+            </form>
+        </div>
 
-    <div id="ClassX" class="tab">
-        <form class="tab-content" onsubmit="saveSchedule(event, 'ClassX')">
-            <h2>Class X</h2>
-            <div id="ClassXFields"></div>
-            <button type="submit">Save Schedule</button>
-        </form>
-    </div>
+        <div id="ClassX" class="tab-content" style="display: none;">
+            <form onsubmit="saveSchedule(event, 'ClassX')">
+                <h2>Class X</h2>
+                <div id="ClassXFields"></div>
+                <button type="submit">Save Schedule</button>
+            </form>
+        </div>
 
-    <div id="DatePicker" class="tab">
-        <div class="tab-content">
+        <div id="DatePicker" class="tab-content" style="display: none;">
             <h2>Date Picker</h2>
             <label>Date: <input type="date" id="scheduleDate" onchange="updateDay()"></label><br>
             <label>Day: <input type="text" id="scheduleDay" readonly></label><br>
             <button onclick="saveDate()">Save Date</button>
         </div>
-    </div>
 
-    <button onclick="printSchedule()" class="no-print">Print Table</button>
+        <button onclick="printSchedule()" class="btn btn-primary no-print">Print Table</button>
+    </div>
 
     <script>
         const subjects = [
-            'MATHS',
-            'SCIENCE',
-            'ENGLISH',
-            'HISTORY',
-            'TELUGU',
-            'HINDI',
-            'GAMES',
-            'GK',
-            'BIOLOGY',
-            'CHEMISTRY',
-            'PHYSICS',
-            'SOCIAL'
+            'MATHS', 'SCIENCE', 'ENGLISH', 'HISTORY', 'TELUGU', 'HINDI',
+            'GAMES', 'GK', 'BIOLOGY', 'CHEMISTRY', 'PHYSICS', 'SOCIAL'
         ];
 
         const scheduleData = {};
@@ -187,16 +171,16 @@
             ];
 
             return periods.map(period => `
-        <label>${period}: 
-            <select name="${period.replace(/ /g, '')}">
-                ${subjects.map(subject => `<option value="${subject}">${subject}</option>`).join('')}
-            </select>
-        </label><br>
-    `).join('');
+                <label>${period}: 
+                    <select name="${period.replace(/ /g, '')}">
+                        ${subjects.map(subject => `<option value="${subject}">${subject}</option>`).join('')}
+                    </select>
+                </label><br>
+            `).join('');
         }
 
         function openTab(className) {
-            const tabs = document.querySelectorAll('.tab');
+            const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => tab.style.display = 'none');
 
             const tabButtons = document.querySelectorAll('.tab-button');
@@ -235,72 +219,69 @@
         }
 
         function printSchedule() {
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write('<html><head><title>Print Schedule</title>');
-            printWindow.document.write('<style>');
-            printWindow.document.write('table { width: 100%; border-collapse: collapse; }');
-            printWindow.document.write('th, td { border: 1px solid black; text-align: center; padding: 8px; }');
-            printWindow.document.write('@media print { @page { size: A4 landscape; margin: 20mm; } }');
-            printWindow.document.write('td { background-color: #ffffff !important; }'); // Ensure background color is applied
-            printWindow.document.write('</style>');
-            printWindow.document.write('</head><body>');
-            printWindow.document.write('<h1 style="text-align: center;">Resonance</h1>');
-            printWindow.document.write('<div style="display: flex; justify-content: space-between; margin-bottom: 10px;">');
-            printWindow.document.write(`<span>Date: ${scheduleDate}</span>`);
-            printWindow.document.write(`<span>Day: ${scheduleDay}</span>`);
-            printWindow.document.write('</div>');
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write('<html><head><title>Print Schedule</title>');
+    printWindow.document.write('<style>');
+    printWindow.document.write('table { width: 100%; border-collapse: collapse; }');
+    printWindow.document.write('th, td { border: 1px solid black; text-align: center; padding: 8px; }');
+    printWindow.document.write('.break-column { width: 2px; background-color: #f1f1f1; }');
+    printWindow.document.write('@media print { @page { size: A4 landscape; margin: 20mm; } }');
+    printWindow.document.write('</style>');
+    printWindow.document.write('</head><body>');
+    printWindow.document.write('<h1 style="text-align: center;">Class Schedule</h1>');
+    printWindow.document.write('<div style="display: flex; justify-content: space-between; margin-bottom: 10px;">');
+    printWindow.document.write(`<span>Date: ${scheduleDate}</span>`);
+    printWindow.document.write(`<span>Day: ${scheduleDay}</span>`);
+    printWindow.document.write('</div>');
 
-            printWindow.document.write('<table><thead><tr>');
-            printWindow.document.write('<th>Class</th>');
-            printWindow.document.write('<th>First Period</th>');
-            printWindow.document.write('<th>Second Period</th>');
-            printWindow.document.write('<th>Third Period</th>');
-            printWindow.document.write('<th>Fourth Period</th>');
-            printWindow.document.write('<th>Fifth Period</th>');
-            printWindow.document.write('<th>Sixth Period</th>');
-            printWindow.document.write('<th>Seventh Period</th>');
-            printWindow.document.write('<th>Eighth Period</th>');
-            printWindow.document.write('<th>Ninth Period</th>');
-            printWindow.document.write('<th>First Study Hour</th>');
-            printWindow.document.write('<th>Second Study Hour</th>');
-            printWindow.document.write('<th>Third Study Hour</th>');
-            printWindow.document.write('</tr></thead><tbody>');
+    printWindow.document.write('<table><thead><tr>');
+    printWindow.document.write('<th>Class</th>');
+    printWindow.document.write('<th>8:30am to 9:25am</th>');
 
-            const subjectColors = {
-                'MATHS': '#FFEB3B',
-                'SCIENCE': '#C8E6C9',
-                'ENGLISH': '#FFAB91',
-                'HISTORY': '#D1C4E9',
-                'TELUGU': '#FFECB3',
-                'HINDI': '#FFE0B2',
-                'GAMES': '#F0F4C3',
-                'GK': '#F8BBD0',
-                'BIOLOGY': '#DCEDC8',
-                'CHEMISTRY': '#FFCCBC',
-                'PHYSICS': '#B3E5FC',
-                'SOCIAL': '#D1C4E9'
-            };
+    printWindow.document.write('<th>9:25am to 10:10am</th>');
+    printWindow.document.write('<th>10:20am to 11:05am</th>');
 
-            Object.keys(scheduleData).forEach(className => {
-                printWindow.document.write('<tr>');
-                printWindow.document.write(`<td>${className}</td>`);
-                const classData = scheduleData[className];
-                const periods = [
-                    'FirstPeriod', 'SecondPeriod', 'ThirdPeriod', 'FourthPeriod',
-                    'FifthPeriod', 'SixthPeriod', 'SeventhPeriod', 'EighthPeriod', 'NinthPeriod',
-                    'FirstStudyHour', 'SecondStudyHour', 'ThirdStudyHour'
-                ];
-                periods.forEach(period => {
-                    const color = subjectColors[classData[period]] || 'white';
-                    printWindow.document.write(`<td style="background-color: ${color} !important;">${classData[period]}</td>`);
-                });
-                printWindow.document.write('</tr>');
-            });
+    printWindow.document.write('<th>11:05am to 11:50am</th>');
+    printWindow.document.write('<th>11:50am to 12:30pm</th>');
 
-            printWindow.document.write('</tbody></table>');
-            printWindow.document.close();
-            printWindow.print();
-        }
+    printWindow.document.write('<th>1:15pm to 1:55pm</th>');
+    printWindow.document.write('<th>1:55pm to 2:35pm</th>');
+    printWindow.document.write('<th>2:45pm to 3:25pm</th>');
+
+    printWindow.document.write('<th>3:25pm to 4:05pm</th>');
+    printWindow.document.write('<th>4:30pm to 5:15pm</th>');
+    printWindow.document.write('<th>5:15pm to 6:00pm</th>');
+    printWindow.document.write('<th>6:00pm to 6:45pm</th>');
+    printWindow.document.write('</tr></thead><tbody>');
+
+    const subjectColors = {
+        'MATHS': '#FFEB3B', 'SCIENCE': '#C8E6C9', 'ENGLISH': '#FFAB91',
+        'HISTORY': '#D1C4E9', 'TELUGU': '#FFECB3', 'HINDI': '#FFE0B2',
+        'GAMES': '#F0F4C3', 'GK': '#F8BBD0', 'BIOLOGY': '#DCEDC8',
+        'CHEMISTRY': '#FFCCBC', 'PHYSICS': '#B3E5FC', 'SOCIAL': '#D1C4E9'
+    };
+
+    Object.keys(scheduleData).forEach(className => {
+        printWindow.document.write('<tr>');
+        printWindow.document.write(`<td>${className}</td>`);
+        const classData = scheduleData[className];
+        const periods = [
+            'FirstPeriod', 'SecondPeriod', 'ThirdPeriod', 'FourthPeriod',
+            'FifthPeriod', 'SixthPeriod', 'SeventhPeriod', 'EighthPeriod', 'NinthPeriod',
+            'FirstStudyHour', 'SecondStudyHour', 'ThirdStudyHour'
+        ];
+        periods.forEach(period => {
+            const color = subjectColors[classData[period]] || 'white';
+            printWindow.document.write(`<td style="background-color: ${color} !important;">${classData[period]}</td>`);
+        });
+        printWindow.document.write('</tr>');
+    });
+
+    printWindow.document.write('</tbody></table>');
+    printWindow.document.close();
+    printWindow.print();
+}
+
 
 
         // Open the first tab by default
@@ -308,5 +289,4 @@
     </script>
 
 </body>
-
 </html>
