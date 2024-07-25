@@ -292,6 +292,8 @@ openTab('ClassV');
 </body>
 </html>
  -->
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -324,7 +326,7 @@ openTab('ClassV');
             padding: 10px 20px;
             margin: 5px;
             transition: 0.3s;
-            flex: 1 1 100px;
+            flex: 1 1 auto;
         }
         .tab-buttons button:hover {
             background-color: #45a049;
@@ -345,10 +347,16 @@ openTab('ClassV');
             writing-mode: vertical-lr;
             width: 5%;
         }
+        .no-print {
+            display: none;
+        }
         @media (max-width: 768px) {
+            .tab-buttons {
+                flex-direction: column;
+            }
             .tab-buttons button {
-                float: none;
                 width: 100%;
+                margin: 2px 0;
             }
             .tab-content {
                 padding: 5px;
@@ -360,6 +368,10 @@ openTab('ClassV');
             th, td {
                 padding: 4px;
                 font-size: 14px;
+            }
+            .no-print {
+                display: block;
+                margin-top: 10px;
             }
         }
     </style>
@@ -515,8 +527,8 @@ function updateDay() {
 }
 
 function downloadScheduleAsImage() {
-    const table = document.createElement('div');
-    table.innerHTML = `
+    const scheduleContainer = document.createElement('div');
+    scheduleContainer.innerHTML = `
         <h1 style="text-align: center;">Resonance</h1>
         <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
             <span>Date: ${scheduleDate}</span>
@@ -548,14 +560,14 @@ function downloadScheduleAsImage() {
             </tbody>
         </table>
     `;
-    document.body.appendChild(table);
+    document.body.appendChild(scheduleContainer);
 
-    html2canvas(table, { scale: 2 }).then(canvas => {
+    html2canvas(scheduleContainer, { scale: 2 }).then(canvas => {
         const link = document.createElement('a');
         link.download = 'schedule.jpg';
         link.href = canvas.toDataURL('image/jpeg');
         link.click();
-        document.body.removeChild(table);
+        document.body.removeChild(scheduleContainer);
     });
 }
 
